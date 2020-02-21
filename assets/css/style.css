@@ -1,0 +1,25 @@
+.bg-main{
+    background-color: #eef5f9 !important;
+}
+
+.btn-login{
+    color: #FFF !important;
+    background-color: #4fc3f7 !important;
+}
+
+.btn-login:hover{
+    background-color: #41a9da !important;
+    transition: 0.5s;
+}
+
+.center-middle{
+    margin-top: 30vh !important;
+}
+
+.text-tomato{
+    color: #ee4d50 !important;
+}
+
+.text-mediumaquamarine{
+    color: #56bfa7;
+}
