@@ -15,6 +15,8 @@
     <link href="<?= base_url()?>template_admin_assets/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="<?= base_url()?>assets/template_admin_assets/dist/css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,7 +42,9 @@
             <div class="page-breadcrumb">
                 <div class="row align-items-center">
                     <div class="col-5">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title">
+                            <?= $this->session->userdata('admin_page'); ?>
+                        </h4>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -59,7 +63,7 @@
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center">
                                     <div>
-                                        <h4 class="card-title">Sales Summary</h4>
+                                        <h4 class="card-title">Sales Summary <?= var_dump($coba)?></h4>
                                         <h5 class="card-subtitle">Overview of Latest Month</h5>
                                     </div>
                                     <div class="ml-auto d-flex no-block align-items-center">

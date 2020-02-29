@@ -23,3 +23,12 @@
 .text-mediumaquamarine{
     color: #56bfa7;
 }
+
+.active{
+    color: #ee4c50 !important;
+}
+
+.center{
+    top: 25vh;
+    bottom: 0;
+}
