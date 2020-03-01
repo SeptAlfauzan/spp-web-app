@@ -32,3 +32,8 @@
     top: 25vh;
     bottom: 0;
 }
+
+.input-seamless{
+    border: none;
+    background: none;
+}

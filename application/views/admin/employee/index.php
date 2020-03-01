@@ -77,11 +77,11 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Level</label>
-                                    <input list="level" class="form-control" id="inputPassword4" placeholder="Pilih level akun" name="level" autocomplete="off"/>
+                                    <input list="level" class="form-control" id="inputPassword4" placeholder="Pilih level akun" name="level" autocomplete="off" />
                                     <datalist id="level" name="level">
-                                        <?php for($i = 0; $i < count($level); $i++){?>
-                                        <option value="<?= $level[$i]?>"></option>
-                                        <?php }?>
+                                        <?php for ($i = 0; $i < count($level); $i++) { ?>
+                                            <option value="<?= $level[$i] ?>"></option>
+                                        <?php } ?>
                                     </datalist>
                                 </div>
                             </div>
@@ -115,25 +115,46 @@
                 <table id="table_id" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Level</th>
-                            <th>Aksi</th>
+                            <th class="text-secondary">Nama</th>
+                            <th class="text-secondary">Username</th>
+                            <th class="text-secondary">Level</th>
+                            <th class="text-secondary">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($employees as $employee){?>
-                        <tr style="border: none">
-                            <td><?= $employee['nama_petugas']?></td>
-                            <td><?= $employee['username']?></td>
-                            <td><?= $employee['level']?></td>
-                            <td>
-                                <a href="<?= base_url('Admin/deleteEmployee')?>?id=<?= $employee['id_petugas']?>">
-                                    <i style="font-size: 20px" class="m-r-10 mdi mdi-delete text-danger"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <?php }?>
+                        <small class="text-info mb-5 pb-5">*klik data akun untuk edit</small>
+                        <?php foreach ($employees as $employee) { ?>
+                            <tr style="border: none" id="row<?= $employee['id_petugas'] ?>">
+                                <form action="" id="<?= $employee['id_petugas'] ?>">
+                                    <td>
+                                        <input type="text" oninput="editAccount(this)" class="input-seamless col-12" value="<?= $employee['nama_petugas'] ?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" oninput="editAccount(this)" class="input-seamless col-12" value="<?= $employee['username'] ?>">
+                                    </td>
+                                    <td>
+                                        <select onchange="editAccount(this)" class="form-control" id="exampleFormControlSelect1">
+                                            <option><?= $employee['level']?></option>
+                                            <?php for ($i=0; $i < count($level); $i++) { ?>
+                                                <?php if($level[$i] != $employee['level']){?>
+                                                <option><?= $level[$i]?></option>
+                                                <?php }?>
+                                            <?php }?>
+                                        </select>
+                                        <!-- <input type="text" xxx class="input-seamless col-12" value="<?= $employee['level'] ?>"> -->
+                                    </td>
+                                    <td>
+                                        <a href="<?= base_url('Admin/deleteEmployee') ?>?id=<?= $employee['id_petugas'] ?>">
+                                            <i style="font-size: 20px" class="m-r-10 mdi mdi-delete text-danger"></i>
+                                        </a>
+                                        <button class="btn btn-danger d-none" type="reset" id="resetbtnrow<?= $employee['id_petugas'] ?>" >batal</button>
+                                        <button type="submit" class="btn btn-info d-none" id="btnrow<?= $employee['id_petugas'] ?>">
+                                            simpan
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -161,6 +182,16 @@
         $(document).ready(function() {
             $('#table_id').DataTable();
         });
+    </script>
+    <script>
+        function editAccount(e) {
+            let td = e.parentNode;
+            let form = td.parentNode.getAttribute('id');
+            let btn = document.getElementById('btn' + form);
+            let btnReset = document.getElementById('resetbtn' + form);
+            btn.classList.remove('d-none');
+            console.log('berhasil');
+        }
     </script>
 </body>
 
